@@ -14,10 +14,10 @@ const App = () => {
       <CreateNote />
       
       <Routes>
-        <Route path="/notes" component={<Notes />} />
-        <Route path="/reminders" component={<Reminders />} />
-        <Route path="/archive" component={<Archive />} />
-        <Route path="/trash" component={<Trash />} />
+        <Route path="/notes" element={<Notes />} />
+        <Route path="/reminders" element={<Reminders />} />
+        <Route path="/archive" element={<Archive />} />
+        <Route path="/trash" element={<Trash />} />
       </Routes>
 
     </>

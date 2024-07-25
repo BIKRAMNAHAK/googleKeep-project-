@@ -8,7 +8,10 @@ import { PiBoxArrowDown } from 'react-icons/pi'
 import { HiDotsVertical } from 'react-icons/hi'
 import { HiArrowUturnLeft, HiArrowUturnRight } from 'react-icons/hi2'
 import { GrCompliance } from 'react-icons/gr'
+import { useDispatch } from 'react-redux'
 function AddNote() {
+    const dispatch = useDispatch()
+
     const [extend, setExtend] = useState(false)
     const [notes , setNotes] = useState({
         title: '',
@@ -22,7 +25,7 @@ function AddNote() {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        
+        dispatch(addNoteAsync(notes))
     }
 
     const handleAdd = () => {
