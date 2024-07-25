@@ -43,7 +43,7 @@
     left: 21%;
     position: fixed;
     margin-right: 2px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     padding-top: 40px;
   }
   .nav-path{
@@ -109,3 +109,15 @@
     height: 60px;
   }
   
+  .view{
+    width: 78%;
+    height: 700px;
+    background-color:white;
+    margin-top: 60px;
+    position: absolute;
+    left: 21%;
+    position: fixed;  
+    margin-right: 2px;
+    overflow-y: scroll;
+    padding-top: 40px;
+  }

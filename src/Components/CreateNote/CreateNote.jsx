@@ -44,7 +44,9 @@ function CreateNote() {
                             <Row className="justify-content-center">
                                 <div className="col-7">
                                     <AddNote />
-                                    <ViewNotes />
+                                    <div className="view">
+                                        <ViewNotes />
+                                    </div>
                                 </div>
                             </Row>
                         </div>

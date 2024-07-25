@@ -10,6 +10,20 @@ import { HiArrowUturnLeft, HiArrowUturnRight } from 'react-icons/hi2'
 import { GrCompliance } from 'react-icons/gr'
 function AddNote() {
     const [extend, setExtend] = useState(false)
+    const [notes , setNotes] = useState({
+        title: '',
+        content: ''
+    })
+
+    const handleInput = (e)=>{
+        const {name , value} = e.target
+        setNotes({...notes, [name]: value})
+    }
+
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        
+    }
 
     const handleAdd = () => {
         setExtend(true)
@@ -29,9 +43,9 @@ function AddNote() {
                 extend ?
                     <>
                         <div className="main_note" >
-                            <form onDoubleClick={onDoubleClickHandler}>
-                                <input type="text" placeholder='Title' className='fw-bold text-black' autoComplete='off' />
-                                <textarea rows="" column="5" placeholder='take a note' ></textarea>
+                            <form onSubmit={handleSubmit} onDoubleClick={onDoubleClickHandler}>
+                                <input type="text" placeholder='Title' className='fw-bold text-black' name='title' value={notes.title} onChange={handleInput}   autoComplete='off' />
+                                <textarea rows="" column="5" placeholder='take a note' name='content' value={notes.content} onChange={handleInput} ></textarea>
                                 <div className="d-flex justify-content-arround">
                                     <div className='col-10 d-flex   '>
                                         <div className="col-1">
