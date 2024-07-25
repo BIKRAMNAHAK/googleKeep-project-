@@ -9,6 +9,9 @@ import { HiDotsVertical } from 'react-icons/hi'
 import { HiArrowUturnLeft, HiArrowUturnRight } from 'react-icons/hi2'
 import { GrCompliance } from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
+import { addNoteAsync } from '../../services/Actions/noteActions'
+
+
 function AddNote() {
     const dispatch = useDispatch()
 
@@ -26,19 +29,17 @@ function AddNote() {
     const handleSubmit = (e) =>{
         e.preventDefault()
         dispatch(addNoteAsync(notes))
+        setExtend(false)
     }
 
     const handleAdd = () => {
         setExtend(true)
     }
 
-    const handledis = () => {
-        setExtend(false)
-    }
 
-    const onDoubleClickHandler =()=>{
-        setExtend(false)
-    }
+    // const onDoubleClickHandler =()=>{
+    //     setExtend(false)
+    // }
     return (
         <>
 
@@ -46,7 +47,7 @@ function AddNote() {
                 extend ?
                     <>
                         <div className="main_note" >
-                            <form onSubmit={handleSubmit} onDoubleClick={onDoubleClickHandler}>
+                            <form onSubmit={handleSubmit} >
                                 <input type="text" placeholder='Title' className='fw-bold text-black' name='title' value={notes.title} onChange={handleInput}   autoComplete='off' />
                                 <textarea rows="" column="5" placeholder='take a note' name='content' value={notes.content} onChange={handleInput} ></textarea>
                                 <div className="d-flex justify-content-arround">
@@ -94,7 +95,7 @@ function AddNote() {
                                         </div>
                                     </div>
                                     <div className='col-2 d-flex justify-content-end'>
-                                        <button className='addnote-btn' type='submit' onClick={handledis}>
+                                        <button className='addnote-btn' type='submit' >
                                             close
                                         </button>
                                     </div>

@@ -6,6 +6,7 @@ import Archive from './Components/Archive/Archive';
 import Trash from './Components/Trash/Trash';
 import Header from './Components/Header/Header';
 import CreateNote from './Components/CreateNote/CreateNote';
+import ViewNotes from './Components/ViewNotes/ViewNotes';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <CreateNote />
       
       <Routes>
+      <Route path="/view" lement={<ViewNotes />} /> 
         <Route path="/notes" element={<Notes />} />
         <Route path="/reminders" element={<Reminders />} />
         <Route path="/archive" element={<Archive />} />
