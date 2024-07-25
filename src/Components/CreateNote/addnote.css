@@ -1,0 +1,107 @@
+
+.main_note{
+    display: flex;
+    width: 600px;
+    height: 150px;
+    background-color: white;
+    box-shadow: 2px 2px 5px 3px darkgrey ;
+    border-radius: 8px;
+}
+.main_note form{
+    margin: 0;
+    padding: 10px;
+}
+.main_note input {
+
+    width: 580px;
+    border: none;
+    padding: 5px 0;
+}
+
+input:focus {
+    outline: none;
+    border: none;
+  }
+
+textarea:focus {
+    outline: none;
+    border: none;
+  }
+
+.main_note textarea {
+
+    width: 100%;
+    border: 0;
+    padding: 5px 0;
+}
+
+.addnote-btn{
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 2px 15px;
+    border-radius: 8px;
+}
+
+.addnote-btn:hover{
+    background-color: rgb(243, 241, 241);
+    color: black;
+    padding: 2px 15px;
+    border: none;
+    border-radius: 8px;
+}
+
+.hover-rounded{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 0;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hover-rounded:hover{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(233, 233, 233);
+    margin: 0;
+    
+}
+.col-1{
+    margin: 0;
+}
+.note_form{
+    width: 650px;
+    padding: 5px;
+    height: 50px;
+    background-color: white;
+    box-shadow: 2px 2px 3px 3px rgb(211, 209, 209);
+    border-radius: 8px;
+}
+
+.note_form input{
+    width: 70%;
+    height: 100%;
+    border: none;
+}
+
+.hover-rounded2{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 0;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hover-rounded2:hover{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(233, 233, 233);
+    margin: 0;
+    
+}
