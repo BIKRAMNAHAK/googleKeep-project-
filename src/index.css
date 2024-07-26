@@ -13,3 +13,7 @@
 .w-80{
     width: 81%;
 }
+body{
+    overflow-y: hidden;
+
+}

@@ -1,6 +1,7 @@
 import { setDoc, doc, getDocs, collection, deleteDoc } from "firebase/firestore";
 import generateUniqueId from "generate-unique-id";
-import { db } from "../../firebaseConfring";
+import { auth, db } from "../../firebaseConfring";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 
 const GetDataSuc = (notes) => {
@@ -11,8 +12,41 @@ const GetDataSuc = (notes) => {
     };
 };
 
+/*SignUp normal action */
 
+const newuserSignUp = (newUser) =>{
+    return {
+        type: "NEWUSER",
+        payload: newUser
+    }
+}
 
+const signupErr = (err) =>{
+    return {
+        type: "SIGNUPERR",
+        payload: err
+    }
+}
+
+const userLogin = (existuser) =>{
+    return {
+        type: "USERLOGIN",
+        payload : existuser,
+    }
+}
+
+const loginErr = (loginerr)=>{
+    return {
+        type: "LOGINERR",
+        payload: loginerr,
+    }
+}
+
+const logOut = ()=>{
+    return {
+        type: "LOGOUT",
+    }
+}
 
 export const addNoteAsync = (note) => {
     return async (dispatch) => {
@@ -58,3 +92,31 @@ export const deleteNoteAsync = (noteId) => {
     }
 }
 
+/*Signup form*/
+
+export const newUserAsync = (user) =>{
+    return async (dispatch) => {
+       await createUserWithEmailAndPassword(auth,user.email , user.password).then((userCredential)=>{
+          
+            dispatch(newuserSignUp(userCredential))
+        }).catch((err)=>{
+            dispatch(signupErr(err))
+        })
+    }
+}
+
+export const userLoginAsync = (loginUser)=>{
+    return async (dispatch) =>{
+        await signInWithEmailAndPassword(auth,loginUser.email , loginUser.password).then((res)=>{
+            dispatch(userLogin(res))
+        }).catch((err)=>{
+            dispatch(loginErr(err))
+        })
+    } 
+}
+
+export const logOutAsync = ()=>{
+    return  (dispatch) =>{
+        dispatch(logOut())
+    }
+}

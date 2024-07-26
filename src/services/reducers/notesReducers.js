@@ -2,13 +2,13 @@ const Initialstate = {
     notes: [],
     note: null,
     errMsg: null,
-    isSuc: false
+    isSuc: false,
 };
 
 function notesReducers(state = Initialstate, action) {
     switch (action.type) {
         case 'GETDATASUC':
-            console.log("notes1",action.payload);
+            console.log("notes1", action.payload);
             return {
                 ...state,
                 notes: action.payload,

@@ -7,8 +7,18 @@ import { RxHamburgerMenu } from 'react-icons/rx'
 import profile from '../../assets/images/profile.jpg'
 import logo from '../../assets/images/Logo.png'
 import './header.css'
+import { useNavigate } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { logOutAsync } from '../../services/Actions/noteActions'
 
 function Header() {
+  const { isLogin } = useSelector(state => state.signup)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const handlelogin = () => {
+    dispatch(logOutAsync())
+  }
   return (
     <Container fluid className='borderd fixed-top'>
       <Row className='py-2 align-items-center'>
@@ -19,7 +29,7 @@ function Header() {
             </div>
           </div>
           <div className="col-8  d-flex justify-content-start align-items-cente">
-            <a href="#"  className='d-flex align-items-center text-decoration-none'>
+            <a href="#" className='d-flex align-items-center text-decoration-none'>
               <span><img src={logo} alt={logo} className='img-fluid img' /></span>
               <h4 className='m-0 light-dark ps-2'>Keep</h4>
             </a>
@@ -61,9 +71,26 @@ function Header() {
           <div className="col-4 d-flex justify-content-end ">
             <div className="col-12 d-flex justify-content-end align-items-center  ">
               <span className='fs-4 logo light-dark me-2'><PiDotsNineBold /></span>
-              <div className='pro-img'>
-                <img src={profile} alt={profile} />
-              </div>
+              {
+                isLogin
+                  ?
+                  <>
+
+                    <div className='pro-img'>
+                      <a href="#" onClick={handlelogin}>
+                        <img src={profile} alt={profile} />
+                      </a>
+                    </div>
+
+                  </>
+                  :
+                  <Link to={'/login'} className='text-decoration-none text-dark'>
+
+                    <div className='pro-img d-flex justify-content-center align-items-center bg-transparent'>
+                      Login
+                    </div>
+                  </Link>
+              }
             </div>
           </div>
         </div>

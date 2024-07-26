@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './createnote.css'
 import { Container, Row } from 'react-bootstrap'
 import AddNote from './AddNote'
 import ViewNotes from '../ViewNotes/ViewNotes'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
 
 function CreateNote() {
+    const {isLogin} = useSelector(state =>state.signup)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(!isLogin){
+            navigate('/login')
+        }
+    })
     return (
+        
         <div>
             <Container fluid className='px-0'>
                 <div class="row">

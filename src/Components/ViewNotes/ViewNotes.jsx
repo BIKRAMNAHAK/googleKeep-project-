@@ -8,12 +8,11 @@ import { IoColorPaletteOutline } from 'react-icons/io5'
 import { MdDeleteOutline, MdOutlineImage } from 'react-icons/md'
 import { PiBoxArrowDown } from 'react-icons/pi'
 import { HiDotsVertical } from 'react-icons/hi'
-import Dropdown from 'react-bootstrap/Dropdown';
 import { deleteNoteAsync, GetDataAsync } from '../../services/Actions/noteActions'
 
 function ViewNotes() {
     const dispatch = useDispatch()
-    const { notes } = useSelector(state => state.notesReducers)
+    const { notes } = useSelector(state => state.notes)
     console.log("notes", notes);
 
     useEffect(() => {

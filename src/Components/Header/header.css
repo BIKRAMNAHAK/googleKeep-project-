@@ -168,4 +168,20 @@ h1 {
     height: 100%;
     position: absolute;
     object-fit: cover;
+}  
+
+
+/*Droupdown manu*/
+.pro-img {
+  position: relative;
+  display: inline;
 }
+
+#profile-img {
+  cursor: pointer;
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  border-radius: 50%;
+}
+
+
