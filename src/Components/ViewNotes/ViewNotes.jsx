@@ -22,16 +22,16 @@ function ViewNotes() {
 
     const handleDelete = (id) =>{
         console.log("delete",id);
-        dispatch(deleteNoteAsync())
+        dispatch(deleteNoteAsync(id))
     }
     return (
         <>
             <Container>
                 <Row>
                     {notes.map((note) => (
-                        <Col className="col-3 p-2">
+                        <Col className="col-3 p-2 m-0">
                             <div className="main_card">
-                                <div className="card_header">{note.title}</div>
+                                <div className="card_header fw-bold">{note.title}</div>
                                 <div className="card_body">
                                     {note.content}
                                 </div>
@@ -68,7 +68,7 @@ function ViewNotes() {
                                             <HiDotsVertical />
                                         </div>
                                     </div>
-                                    <button className='text-danger border-0 fs-5 ' onClick={()=>handleDelete(note.id)}>
+                                    <button className='text-danger border-0 fs-5 bg-transform' onClick={()=>handleDelete(note.id)}>
                                         <MdDeleteOutline />
                                     </button>
                                 </div>

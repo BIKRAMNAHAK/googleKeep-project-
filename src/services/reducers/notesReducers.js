@@ -14,11 +14,7 @@ function notesReducers(state = Initialstate, action) {
                 notes: action.payload,
                 isSuc: true
             };
-        case 'DELETENOTESUC':
-            return{
-                ...state,
-                notes: action.payload
-            }
+       
         default:
             return state;
     }

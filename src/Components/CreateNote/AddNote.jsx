@@ -16,19 +16,28 @@ function AddNote() {
     const dispatch = useDispatch()
 
     const [extend, setExtend] = useState(false)
-    const [notes , setNotes] = useState({
+    const [notes, setNotes] = useState({
         title: '',
         content: ''
     })
 
-    const handleInput = (e)=>{
-        const {name , value} = e.target
-        setNotes({...notes, [name]: value})
+    const handleInput = (e) => {
+        const { name, value } = e.target
+        setNotes({ ...notes, [name]: value })
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addNoteAsync(notes))
+        const { title, content } = notes
+        if (title && content) {
+            dispatch(addNoteAsync(notes))
+        }else{
+            alert('Please fill all the fields')
+        }
+        setNotes({
+            title: '',
+            content: ''
+        })
         setExtend(false)
     }
 
@@ -37,9 +46,9 @@ function AddNote() {
     }
 
 
-    // const onDoubleClickHandler =()=>{
-    //     setExtend(false)
-    // }
+    const onDoubleClickHandler = () => {
+        setExtend(false)
+    }
     return (
         <>
 
@@ -47,8 +56,8 @@ function AddNote() {
                 extend ?
                     <>
                         <div className="main_note" >
-                            <form onSubmit={handleSubmit} >
-                                <input type="text" placeholder='Title' className='fw-bold text-black' name='title' value={notes.title} onChange={handleInput}   autoComplete='off' />
+                            <form onSubmit={handleSubmit} onDoubleClick={onDoubleClickHandler} >
+                                <input type="text" placeholder='Title' className='fw-bold text-black' name='title' value={notes.title} onChange={handleInput} autoComplete='off' />
                                 <textarea rows="" column="5" placeholder='take a note' name='content' value={notes.content} onChange={handleInput} ></textarea>
                                 <div className="d-flex justify-content-arround">
                                     <div className='col-10 d-flex   '>
@@ -107,19 +116,19 @@ function AddNote() {
 
                     :
                     <div className="note_form d-flex">
-                        <input type="text" placeholder='Take a note...' className='fw-bold' onClick={handleAdd}/>
+                        <input type="text" placeholder='Take a note...' className='fw-bold' onClick={handleAdd} />
                         <div className='d-flex gap-4 fs-4 align-items-center'>
                             <div className='hover-rounded2'>
-                            <GrCompliance />
+                                <GrCompliance />
                             </div>
                             <div className='hover-rounded2'>
-                            <IoBrushOutline />
+                                <IoBrushOutline />
                             </div>
                             <div className='hover-rounded2'>
-                            <MdOutlineImage />
+                                <MdOutlineImage />
                             </div>
                         </div>
-                    </div> 
+                    </div>
             }
         </>
     )

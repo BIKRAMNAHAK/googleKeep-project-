@@ -12,12 +12,7 @@ const GetDataSuc = (notes) => {
 };
 
 
-const deleteNoteSuccess = (noteId) => {
-    return {
-        type: "DELETENOTESUC",
-        payload: noteId
-    }
-}
+
 
 export const addNoteAsync = (note) => {
     return async (dispatch) => {
@@ -52,10 +47,11 @@ export const GetDataAsync = () => {
 
 
 export const deleteNoteAsync = (noteId) => {
+    console.log("dlee>>",noteId);
     return async (dispatch) => {
         try {
             await deleteDoc(doc(db, "note", noteId))
-            dispatch(deleteNoteSuccess(noteId))
+            dispatch(GetDataAsync());
         } catch (err) {
             console.log("Error deleting note:", err)
         }
