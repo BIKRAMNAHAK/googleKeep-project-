@@ -61,7 +61,7 @@ function ViewNotes() {
 
     return (
         <>
-             <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
                     <Form onSubmit={handleUpdate}>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -101,9 +101,9 @@ function ViewNotes() {
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <a href='#' className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <MdOutlineImage />
-                                        </a>
+                                        </div>
                                     </div>
                                     <div className="col-1">
                                         <div className='hover-rounded'>
@@ -143,48 +143,53 @@ function ViewNotes() {
                         notes.map((data) => {
                             return (
                                 <>
-                                    <Col className="col-3 p-2 m-0" >
-                                        <div className='main_card' onClick={() => handleShow(data.id)}>
-                                        <div className="card_header fw-bold">{data.title}</div>
-                                            <div className="card_body">
-                                                {data.content}
-                                            </div>
-                                        </div>
-                                        <div className="main_card " >
-                                            <div className="overlay">
-                                                <div className="col-1">
-                                                    <div className='hover-rounded'>
-                                                        <BiBellPlus />
-                                                    </div>
-                                                </div>
-                                                <div className="col-1">
-                                                    <div className='hover-rounded'>
-                                                        <BsPersonPlus />
-                                                    </div>
-                                                </div>
-                                                <div className="col-1">
-                                                    <div className='hover-rounded'>
-                                                        <IoColorPaletteOutline />
-                                                    </div>
-                                                </div>
-                                                <div className="col-1">
-                                                    <div className='hover-rounded'>
-                                                        <MdOutlineImage />
+                                    <Col className="col-3  p-2 m-0" >
+                                        <div className='main_card1'>
 
-                                                    </div>
+                                            <div className='' onClick={() => handleShow(data.id)}>
+                                                <div className="card_header fw-bold">{data.title}</div>
+                                                <div className="card_body">
+                                                    {data.content}
                                                 </div>
-                                                <div className="col-1">
-                                                    <div className='hover-rounded'>
-                                                        <PiBoxArrowDown />
+                                            </div>
+                                            <div className="main_card " >
+                                                <div className="overlay">
+                                                    <div className="col-1">
+                                                        <div className='hover-rounded'>
+                                                            <BiBellPlus />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-1">
-                                                    <div role='button' className='hover-rounded'>
-                                                    <MdDeleteOutline onClick={() => handleDelete(data.id)}/>
+                                                    <div className="col-1">
+                                                        <div className='hover-rounded'>
+                                                            <BsPersonPlus />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-1">
+                                                        <div className='hover-rounded'>
+                                                            <IoColorPaletteOutline />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-1">
+                                                        <div className='hover-rounded'>
+                                                            <MdOutlineImage />
+
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-1">
+                                                        <div className='hover-rounded'>
+                                                            <PiBoxArrowDown />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-1">
+                                                        <div role='button' className='hover-rounded'>
+                                                            <MdDeleteOutline onClick={() => handleDelete(data.id)} />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
+
                                     </Col>
                                 </>
                             )
