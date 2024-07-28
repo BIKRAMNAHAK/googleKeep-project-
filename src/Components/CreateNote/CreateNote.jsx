@@ -11,11 +11,11 @@ function CreateNote() {
     const {isLogin} = useSelector(state =>state.signup)
     const navigate = useNavigate()
 
-    // useEffect(()=>{
-    //     if(!isLogin){
-    //         navigate('/login')
-    //     }
-    // },[isLogin])
+    useEffect(()=>{
+        if(!isLogin){
+            navigate('/login')
+        }
+    },[isLogin])
     return (
         
         <div>
