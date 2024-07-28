@@ -31,7 +31,7 @@ function AddNote() {
         const { title, content } = notes
         if (title && content) {
             dispatch(addNoteAsync(notes))
-        }else{
+        } else {
             alert('Please fill all the fields')
         }
         setNotes({
@@ -57,7 +57,7 @@ function AddNote() {
                     <>
                         <div className="main_note" >
                             <form onSubmit={handleSubmit} onDoubleClick={onDoubleClickHandler} >
-                                <input type="text" placeholder='Title' className='fw-bold text-black' name='title' value={notes.title} onChange={handleInput} autoComplete='off' />
+                                <input type="text" placeholder='Title' className='fw-bold text-black' name='title' value={notes.title} onChange={handleInput} />
                                 <textarea rows="" column="5" placeholder='take a note' name='content' value={notes.content} onChange={handleInput} ></textarea>
                                 <div className="d-flex justify-content-arround">
                                     <div className='col-10 d-flex   '>
@@ -77,10 +77,17 @@ function AddNote() {
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
-                                                <MdOutlineImage />
-
-                                            </div>
+                                            <a href='#' className='hover-rounded'>
+                                                <label htmlFor="image-upload" style={{ cursor: "pointer" }}>
+                                                    <MdOutlineImage />
+                                                </label>
+                                                <input
+                                                    id="image-upload"
+                                                    type="file"
+                                                    accept="image/*"
+                                                    style={{ display: "none" }}
+                                                />
+                                            </a>
                                         </div>
                                         <div className="col-1">
                                             <div className='hover-rounded'>

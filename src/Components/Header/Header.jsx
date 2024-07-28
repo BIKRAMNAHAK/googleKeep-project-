@@ -19,14 +19,19 @@ function Header() {
   const handlelogin = () => {
     dispatch(logOutAsync())
   }
+
+  const pageRefress = () =>{
+    window.location.reload()
+    isLogin(true)
+  }
   return (
     <Container fluid className='borderd fixed-top'>
       <Row className='py-2 align-items-center'>
         <div className="col-2  d-flex">
           <div className="col-3">
-            <div className=' logo fs-5'>
-              <RxHamburgerMenu />
-            </div>
+            <a href='#' className=' text-decoration-none text-dark logo fs-5'>
+              <RxHamburgerMenu  />
+            </a>
           </div>
           <div className="col-8  d-flex justify-content-start align-items-cente">
             <a href="#" className='d-flex align-items-center text-decoration-none'>
@@ -50,7 +55,7 @@ function Header() {
           <div className="col-8 d-flex justify-content-center fs-4 gap-3 light-dark">
             <div className="col-2 d-flex justify-content-center align-items-center">
               <div className='logo'>
-                <FaArrowRotateRight />
+                <FaArrowRotateRight onClick={pageRefress}/>
               </div>
             </div>
 

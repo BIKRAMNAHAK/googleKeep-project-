@@ -1,6 +1,5 @@
 const signupState = {
     users: null,
-    user: null,
     errMsg: null,
     isSignup: false,
     isLogin : false
@@ -38,6 +37,13 @@ function signupReducers(state = signupState, action) {
             return{
                 ...state,
                 isLogin : false,
+            }
+
+        case 'BYGOOGLE':
+            return{
+                ...state,
+                users: action.payload,
+                isLogin: true
             }
         default:
             return state;

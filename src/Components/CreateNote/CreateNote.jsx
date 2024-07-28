@@ -1,26 +1,27 @@
 import React, { useEffect } from 'react'
 import './createnote.css'
 import { Container, Row } from 'react-bootstrap'
-import AddNote from './AddNote'
+import AddNote from '../Notes/AddNote'
 import ViewNotes from '../ViewNotes/ViewNotes'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 
 function CreateNote() {
+
     const {isLogin} = useSelector(state =>state.signup)
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        if(!isLogin){
-            navigate('/login')
-        }
-    })
+    // useEffect(()=>{
+    //     if(!isLogin){
+    //         navigate('/login')
+    //     }
+    // },[isLogin])
     return (
         
         <div>
             <Container fluid className='px-0'>
-                <div class="row">
-                    <div class="main-body mt-2">
+                <div className="row">
+                    <div className="main-body mt-2">
                         <div class="admin-pannel">
                             <div className='mt-2'>
                                 <div className='d-flex admin-link'>
@@ -50,7 +51,7 @@ function CreateNote() {
 
                             </div>
                         </div>
-                        <div class="body-area ">
+                        <div className="body-area ">
 
                             <Row className="justify-content-center">
                                 <div className="col-7">

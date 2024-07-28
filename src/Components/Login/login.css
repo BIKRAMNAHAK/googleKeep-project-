@@ -58,7 +58,16 @@
     outline: none;
     width: 100%;
     color: #d3d3d3;
+    background-color: #171717;
   }
+
+  .input:focus, input:hover {
+    outline: none;
+    border-color: rgb(224, 222, 223);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(255, 255, 255); 
+    color: #171717;
+}
   
   .form .btn {
     display: flex;

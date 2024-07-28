@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
-    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "firebase": "^10.12.4",
     "generate-unique-id": "^2.0.3",

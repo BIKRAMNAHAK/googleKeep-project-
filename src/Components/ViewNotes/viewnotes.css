@@ -32,3 +32,20 @@
 .card_header{
     padding: 0px 0px 30px 0px;
 }
+
+
+/*Edit model css*/
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: var(--bs-modal-padding);
+    margin: 0;
+}
+
+.modal-content {
+    width: 700px;
+}
+
+.m-0.modal-footer {
+    display: inline-block;
+}

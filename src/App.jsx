@@ -1,6 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import Sidebar from './Components/body/Sidebar'
-import Notes from './Components/Notes/Notes';
 import Reminders from './Components/Reminders/Reminders';
 import Archive from './Components/Archive/Archive';
 import Trash from './Components/Trash/Trash';
@@ -9,6 +7,7 @@ import CreateNote from './Components/CreateNote/CreateNote';
 import ViewNotes from './Components/ViewNotes/ViewNotes';
 import Singup from './Components/Signup/Singup';
 import Login from './Components/Login/Login';
+
 
 const App = () => {
   return (
@@ -20,7 +19,6 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path="/signup" element={<Singup />} />
         <Route path="/view" lement={<ViewNotes />} />
-        <Route path="/notes" element={<Notes />} />
         <Route path="/reminders" element={<Reminders />} />
         <Route path="/archive" element={<Archive />} />
         <Route path="/trash" element={<Trash />} />

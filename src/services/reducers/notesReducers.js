@@ -1,8 +1,8 @@
 const Initialstate = {
     notes: [],
-    note: null,
     errMsg: null,
     isSuc: false,
+    isloading: false
 };
 
 function notesReducers(state = Initialstate, action) {
@@ -14,7 +14,6 @@ function notesReducers(state = Initialstate, action) {
                 notes: action.payload,
                 isSuc: true
             };
-       
         default:
             return state;
     }

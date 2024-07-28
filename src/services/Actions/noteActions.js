@@ -1,8 +1,8 @@
-import { setDoc, doc, getDocs, collection, deleteDoc } from "firebase/firestore";
+import { setDoc, doc, getDocs, collection, deleteDoc, getDoc } from "firebase/firestore";
 import generateUniqueId from "generate-unique-id";
 import { auth, db } from "../../firebaseConfring";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+const provider = new GoogleAuthProvider();
 
 const GetDataSuc = (notes) => {
     console.log("notes",notes);
@@ -12,7 +12,7 @@ const GetDataSuc = (notes) => {
     };
 };
 
-/*SignUp normal action */
+
 
 const newuserSignUp = (newUser) =>{
     return {
@@ -35,6 +35,13 @@ const userLogin = (existuser) =>{
     }
 }
 
+const bygoogle = (res)=>{
+    return{
+        type: "BYGOOGLE",
+        payload: res
+    }
+}
+
 const loginErr = (loginerr)=>{
     return {
         type: "LOGINERR",
@@ -48,6 +55,8 @@ const logOut = ()=>{
     }
 }
 
+
+/* notes */
 export const addNoteAsync = (note) => {
     return async (dispatch) => {
         try {
@@ -79,6 +88,17 @@ export const GetDataAsync = () => {
     };
 };
 
+
+export const updateNotesAsync = (updatenotes) =>{
+    return async(dispatch)=>{
+        try{
+            await setDoc(doc(db,'note',`${updatenotes.id}`),updatenotes)
+          dispatch(GetDataAsync());
+        }catch(err){
+            console.log("error",err)
+        }
+    }
+}
 
 export const deleteNoteAsync = (noteId) => {
     console.log("dlee>>",noteId);
@@ -113,6 +133,16 @@ export const userLoginAsync = (loginUser)=>{
             dispatch(loginErr(err))
         })
     } 
+}
+
+export const conectWithGoogle = () =>{
+    return  (dispatch) =>{
+        signInWithPopup(auth, provider).then((result)=>{
+            dispatch(bygoogle(result))
+        }).catch((err)=>{
+            // dispatch(googlerr(err))
+        })
+    }
 }
 
 export const logOutAsync = ()=>{
