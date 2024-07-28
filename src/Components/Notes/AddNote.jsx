@@ -77,8 +77,8 @@ function AddNote() {
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <a href='#' className='hover-rounded'>
-                                                <label htmlFor="image-upload" style={{ cursor: "pointer" }}>
+                                            <div role='button' className='hover-rounded'>
+                                                <label htmlFor="image-upload" style={{ cursor: "pointer" }} className='m-0'>
                                                     <MdOutlineImage />
                                                 </label>
                                                 <input
@@ -87,7 +87,7 @@ function AddNote() {
                                                     accept="image/*"
                                                     style={{ display: "none" }}
                                                 />
-                                            </a>
+                                            </div>
                                         </div>
                                         <div className="col-1">
                                             <div className='hover-rounded'>

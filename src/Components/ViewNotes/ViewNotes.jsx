@@ -144,13 +144,14 @@ function ViewNotes() {
                             return (
                                 <>
                                     <Col className="col-3 p-2 m-0" >
-                                        <div className="main_card" onClick={() => handleShow(data.id)}>
-                                            <div className="card_header fw-bold">{data.title}</div>
+                                        <div className='main_card' onClick={() => handleShow(data.id)}>
+                                        <div className="card_header fw-bold">{data.title}</div>
                                             <div className="card_body">
                                                 {data.content}
                                             </div>
+                                        </div>
+                                        <div className="main_card " >
                                             <div className="overlay">
-
                                                 <div className="col-1">
                                                     <div className='hover-rounded'>
                                                         <BiBellPlus />
@@ -178,13 +179,10 @@ function ViewNotes() {
                                                     </div>
                                                 </div>
                                                 <div className="col-1">
-                                                    <div className='hover-rounded'>
-                                                        <HiDotsVertical />
+                                                    <div role='button' className='hover-rounded'>
+                                                    <MdDeleteOutline onClick={() => handleDelete(data.id)}/>
                                                     </div>
                                                 </div>
-                                                <button className='text-danger border-0 fs-5 bg-transform' onClick={() => handleDelete(data.id)}>
-                                                    <MdDeleteOutline />
-                                                </button>
                                             </div>
                                         </div>
                                     </Col>
