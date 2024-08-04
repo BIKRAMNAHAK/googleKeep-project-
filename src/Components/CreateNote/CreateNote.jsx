@@ -3,13 +3,19 @@ import './createnote.css'
 import { Container, Row } from 'react-bootstrap'
 import AddNote from '../Notes/AddNote'
 import ViewNotes from '../ViewNotes/ViewNotes'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { deleteAllNoteAsync } from '../../services/Actions/noteActions'
 
 function CreateNote() {
 
-    const {isLogin} = useSelector(state =>state.signup)
+    const { isLogin } = useSelector(state => state.signup)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const deleteAllNotes =()=>{
+        dispatch(deleteAllNoteAsync())
+    }
 
     useEffect(()=>{
         if(!isLogin){
@@ -17,7 +23,7 @@ function CreateNote() {
         }
     },[isLogin])
     return (
-        
+
         <div>
             <Container fluid className='px-0'>
                 <div className="row">
@@ -56,7 +62,10 @@ function CreateNote() {
                             <Row className="justify-content-center">
                                 <div className="col-7">
                                     <AddNote />
-                                    <div className="view">
+                                    <div className='mt-5 '>
+                                        <div className='col text-end'>
+                                            <button className='btn btn-danger' onClick={deleteAllNotes}>All Delete</button>
+                                        </div>
                                         <ViewNotes />
                                     </div>
                                 </div>

@@ -9,7 +9,7 @@ import { HiDotsVertical } from 'react-icons/hi'
 import { HiArrowUturnLeft, HiArrowUturnRight } from 'react-icons/hi2'
 import { GrCompliance } from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
-import { addNoteAsync } from '../../services/Actions/noteActions'
+import { addNoteAsync, loadImageAsync } from '../../services/Actions/noteActions'
 
 
 function AddNote() {
@@ -18,7 +18,8 @@ function AddNote() {
     const [extend, setExtend] = useState(false)
     const [notes, setNotes] = useState({
         title: '',
-        content: ''
+        content: '',
+        image : ''
     })
 
     const handleInput = (e) => {
@@ -39,6 +40,16 @@ function AddNote() {
             content: ''
         })
         setExtend(false)
+    }
+
+    const handleimage = async(e)=>{
+        const file = e.target.files[0]
+        try{
+            let url = dispatch(loadImageAsync(file))
+            setNotes({ ...notes,image: url })
+        } catch(err){
+            console.log("image upload is faild",err)
+        }
     }
 
     const handleAdd = () => {
@@ -62,17 +73,17 @@ function AddNote() {
                                 <div className="d-flex justify-content-arround">
                                     <div className='col-10 d-flex   '>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
+                                            <div role='button' className='hover-rounded'>
                                                 <BiBellPlus />
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
+                                            <div role='button' className='hover-rounded'>
                                                 <BsPersonPlus />
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
+                                            <div role='button' className='hover-rounded'>
                                                 <IoColorPaletteOutline />
                                             </div>
                                         </div>
@@ -85,27 +96,29 @@ function AddNote() {
                                                     id="image-upload"
                                                     type="file"
                                                     accept="image/*"
+                                                    name='image'
+                                                    onChange={handleimage}
                                                     style={{ display: "none" }}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
+                                            <div role='button' className='hover-rounded'>
                                                 <PiBoxArrowDown />
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
+                                            <div role='button' className='hover-rounded'>
                                                 <HiDotsVertical />
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
+                                            <div role='button' className='hover-rounded'>
                                                 <HiArrowUturnLeft />
                                             </div>
                                         </div>
                                         <div className="col-1">
-                                            <div className='hover-rounded'>
+                                            <div role='button' className='hover-rounded'>
                                                 <HiArrowUturnRight />
                                             </div>
                                         </div>
@@ -131,8 +144,11 @@ function AddNote() {
                             <div className='hover-rounded2'>
                                 <IoBrushOutline />
                             </div>
-                            <div className='hover-rounded2'>
-                                <MdOutlineImage />
+                            <div role='button' className='hover-rounded2'>
+                                <label htmlFor="image-uplode" style={{ cursor: 'pointer' }}>
+                                    <MdOutlineImage />
+                                </label>
+                                <input type="file" id="image-uplode" style={{display: 'none'}} />
                             </div>
                         </div>
                     </div>

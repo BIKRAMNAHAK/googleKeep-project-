@@ -1,55 +1,61 @@
-import { setDoc, doc, getDocs, collection, deleteDoc, getDoc } from "firebase/firestore";
+import { setDoc, doc, getDocs, collection, deleteDoc, } from "firebase/firestore";
 import generateUniqueId from "generate-unique-id";
-import { auth, db } from "../../firebaseConfring";
+import { auth, db, storage } from "../../firebaseConfring";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 const provider = new GoogleAuthProvider();
 
 const GetDataSuc = (notes) => {
-    console.log("notes",notes);
+    console.log("notes", notes);
     return {
         type: "GETDATASUC",
         payload: notes
     };
 };
 
+const deleteallnotes =(deletedata)=>{
+    return{
+        type: "DELETEALLNOTES",
+        payload : deletedata
+    }
+}
 
-
-const newuserSignUp = (newUser) =>{
+const newuserSignUp = (newUser) => {
     return {
         type: "NEWUSER",
         payload: newUser
     }
 }
 
-const signupErr = (err) =>{
+const signupErr = (err) => {
     return {
         type: "SIGNUPERR",
         payload: err
     }
 }
 
-const userLogin = (existuser) =>{
+const userLogin = (existuser) => {
     return {
         type: "USERLOGIN",
-        payload : existuser,
+        payload: existuser,
     }
 }
 
-const bygoogle = (res)=>{
-    return{
+const bygoogle = (res) => {
+    return {
         type: "BYGOOGLE",
         payload: res
     }
 }
 
-const loginErr = (loginerr)=>{
+const loginErr = (loginerr) => {
     return {
         type: "LOGINERR",
         payload: loginerr,
     }
 }
 
-const logOut = ()=>{
+const logOut = () => {
     return {
         type: "LOGOUT",
     }
@@ -89,19 +95,19 @@ export const GetDataAsync = () => {
 };
 
 
-export const updateNotesAsync = (updatenotes) =>{
-    return async(dispatch)=>{
-        try{
-            await setDoc(doc(db,'note',`${updatenotes.id}`),updatenotes)
-          dispatch(GetDataAsync());
-        }catch(err){
-            console.log("error",err)
+export const updateNotesAsync = (updatenotes) => {
+    return async (dispatch) => {
+        try {
+            await setDoc(doc(db, 'note', `${updatenotes.id}`), updatenotes)
+            dispatch(GetDataAsync());
+        } catch (err) {
+            console.log("error", err)
         }
     }
 }
 
 export const deleteNoteAsync = (noteId) => {
-    console.log("dlee>>",noteId);
+    console.log("dlee>>", noteId);
     return async (dispatch) => {
         try {
             await deleteDoc(doc(db, "note", noteId))
@@ -112,41 +118,70 @@ export const deleteNoteAsync = (noteId) => {
     }
 }
 
+export const deleteAllNoteAsync = () => {
+    return async (dispatch) => {
+        try {
+            const querySnapshot = await getDocs(collection(db, "note"));
+            let deletefile = querySnapshot.forEach((doc) => {
+                deleteDoc(doc.ref);
+            })
+            dispatch(deleteallnotes(deletefile))
+         } catch (err) {
+            console.log("Error deleting all notes:", err)
+        }
+    }
+}
+
+export const loadImageAsync =(file)=>{
+    return (dispatch)=>{
+        const storageref = ref(storage , `imags/${file.name}`)
+        return uploadBytes(storageref ,file).then((snapshort)=>{
+           return getDownloadURL(snapshort.ref)
+        }).then((url)=>{
+            console.log("imagelink",url);
+            return url
+        }).catch((err)=>{
+            console.log("this file can't be reached on page",err);
+        })
+
+    }
+}
+
 /*Signup form*/
 
-export const newUserAsync = (user) =>{
+export const newUserAsync = (user) => {
     return async (dispatch) => {
-       await createUserWithEmailAndPassword(auth,user.email , user.password).then((userCredential)=>{
-          
+        await createUserWithEmailAndPassword(auth, user.email, user.password).then((userCredential) => {
+
             dispatch(newuserSignUp(userCredential))
-        }).catch((err)=>{
+        }).catch((err) => {
             dispatch(signupErr(err))
         })
     }
 }
 
-export const userLoginAsync = (loginUser)=>{
-    return async (dispatch) =>{
-        await signInWithEmailAndPassword(auth,loginUser.email , loginUser.password).then((res)=>{
+export const userLoginAsync = (loginUser) => {
+    return async (dispatch) => {
+        await signInWithEmailAndPassword(auth, loginUser.email, loginUser.password).then((res) => {
             dispatch(userLogin(res))
-        }).catch((err)=>{
+        }).catch((err) => {
             dispatch(loginErr(err))
         })
-    } 
+    }
 }
 
-export const conectWithGoogle = () =>{
-    return  (dispatch) =>{
-        signInWithPopup(auth, provider).then((result)=>{
+export const conectWithGoogle = () => {
+    return (dispatch) => {
+        signInWithPopup(auth, provider).then((result) => {
             dispatch(bygoogle(result))
-        }).catch((err)=>{
+        }).catch((err) => {
             // dispatch(googlerr(err))
         })
     }
 }
 
-export const logOutAsync = ()=>{
-    return  (dispatch) =>{
+export const logOutAsync = () => {
+    return (dispatch) => {
         dispatch(logOut())
     }
 }

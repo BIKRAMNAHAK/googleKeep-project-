@@ -84,44 +84,47 @@ function ViewNotes() {
                         </Form.Group>
                         <Modal.Footer className='m-0 w-100'>
                             <Row>
-                                <div className='col-10 d-flex justify-content-start'>
+                                <div className='col-10 d-flex justify-content-start gap-2'>
                                     <div className="col-1">
-                                        <div className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <BiBellPlus />
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <div className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <BsPersonPlus />
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <div className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <IoColorPaletteOutline />
                                         </div>
                                     </div>
                                     <div className="col-1">
                                         <div role='button' className='hover-rounded'>
-                                            <MdOutlineImage />
+                                            <label htmlFor='image-uplode' style={{ cursor: 'pointer' }} className='p-0 m-0'>
+                                                <MdOutlineImage />
+                                            </label>
+                                            <input type="file" id='image-uplode' style={{ display: 'none' }} />
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <div className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <PiBoxArrowDown />
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <div className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <HiDotsVertical />
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <div className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <HiArrowUturnLeft />
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <div className='hover-rounded'>
+                                        <div role='button' className='hover-rounded'>
                                             <HiArrowUturnRight />
                                         </div>
                                     </div>
@@ -137,8 +140,7 @@ function ViewNotes() {
                 </Modal.Body>
             </Modal>
 
-            <Container>
-                <Row>
+                <Row className='view'>
                     {
                         notes.map((data) => {
                             return (
@@ -155,28 +157,30 @@ function ViewNotes() {
                                             <div className="main_card " >
                                                 <div className="overlay">
                                                     <div className="col-1">
-                                                        <div className='hover-rounded'>
+                                                        <div role='button' className='hover-rounded'>
                                                             <BiBellPlus />
                                                         </div>
                                                     </div>
                                                     <div className="col-1">
-                                                        <div className='hover-rounded'>
+                                                        <div role='button' className='hover-rounded'>
                                                             <BsPersonPlus />
                                                         </div>
                                                     </div>
                                                     <div className="col-1">
-                                                        <div className='hover-rounded'>
+                                                        <div role='button' className='hover-rounded'>
                                                             <IoColorPaletteOutline />
                                                         </div>
                                                     </div>
                                                     <div className="col-1">
-                                                        <div className='hover-rounded'>
-                                                            <MdOutlineImage />
-
+                                                        <div role='button' className='hover-rounded'>
+                                                            <label htmlFor="image-uplode" style={{ cursor: 'pointer' }}>
+                                                                <MdOutlineImage />
+                                                            </label>
+                                                            <input type="file" id='image-uplode' style={{display: 'none'}} />
                                                         </div>
                                                     </div>
                                                     <div className="col-1">
-                                                        <div className='hover-rounded'>
+                                                        <div role='button' className='hover-rounded'>
                                                             <PiBoxArrowDown />
                                                         </div>
                                                     </div>
@@ -196,7 +200,6 @@ function ViewNotes() {
                         })
                     }
                 </Row>
-            </Container>
         </>
 
     )
